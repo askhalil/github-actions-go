@@ -22,8 +22,7 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > /home/runner/.ssh/github_actions
           chmod 600 /home/runner/.ssh/github_actions
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null	
-          ssh-add /home/runner/.ssh/github_actions
-          ssh $SSH_USERNAME@$SSH_HOST "echo 'Hello from GitHub Actions'"
+          ssh -i /home/runner/.ssh/github_actions $SSH_USERNAME@$SSH_HOST "echo 'Hello from GitHub Actions'"
       - name: Set up Go
         uses: actions/setup-go@v3
         with:
